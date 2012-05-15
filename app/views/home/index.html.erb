@@ -1,15 +1,16 @@
-<div id="login_container" class="row-fluid">
+<%#<div id="login_container" class="row-fluid">
 	<div class="span4"></div>
   <div id="login_form" class="span4 well">
-    <form method="post" action="/login">
+    <%= form_for(User.new, :url => '/login', :html => {:id => :form_sign_in}) do |f| % >
       <p>
-        <input type="text" id="username" name="username" placeholder="Username" class="span12" />
+        <%= f.text_field :nickname, :class => "span12", :placeholder => "Nickname" % >
       </p>
       <p>
-        <input type="password" id="password" name="password" placeholder="Password" class="span12" />
+        <%= f.password_field :password, :class => "span12", :placeholder => "Password" % >
       </p>
       <button type="submit" class="btn">Login</button>
-    </form>
+    <% end % >
   </div>
   <div class="span4"></div>
 </div>
+%>

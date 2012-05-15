@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  skip_before_filter :require_login, :only => [:create]
+
   # GET /users
   # GET /users.json
   def index
@@ -13,8 +16,10 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_slug(params[:id])
 
+    @params = {:user => @user.as_json}
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

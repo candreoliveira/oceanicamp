@@ -1,6 +1,9 @@
 Oceanicamp::Application.routes.draw do
   
   root :to => "home#index"
+
+  post "login"    => "sessions#create",     :as => "login"
+  get "logout"    => "sessions#destroy",    :as => "logout"
   
   resources :users
   

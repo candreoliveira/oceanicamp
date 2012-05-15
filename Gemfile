@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.3'
+gem "rails", "3.2.3"
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -11,38 +11,56 @@ gem 'sprockets'
 # gem para compilar templates ejs
 gem 'ejs'
 
+# gem que traz atalhos para o backbone
+gem 'backbone-on-rails'
+
+# gem que disponibiliza o jquery
+gem 'jquery-rails'
+
+# gem que proporciona classes ára melhorar o desempenho do backbone
+gem 'backbone-support'
+
+# gem que disponibiliza o i18n nojavascript
+gem "i18n-js", "~> 3.0.0.rc2"
+
+# gem para montar jsons
+gem 'jbuilder'
+
 # gem para compilar o css
-gem 'sass', '3.1.16'
+gem 'sass'
 
 # gem para comprimir o css
-gem 'yui-compressor', '0.9.6'
+gem 'yui-compressor'
 
 # executa javascript pelo ruby
-gem 'execjs', '1.3.1'
+gem 'execjs'
 
 # coloca o v8 engine dentro do ruby
-gem 'therubyracer', '0.9.9'
+gem 'therubyracer'
 
 # automatizacao de deploy
-gem 'capistrano', '2.9.0'
+gem 'capistrano'
 
 # plugin para fazer upload de arquivos
 gem 'carrierwave-mongoid', '0.1.3', :require => 'carrierwave/mongoid'
 
 # plugin de autenticacao
-gem 'sorcery', '0.7.0'
+gem 'sorcery'
 
 # Protege a aplicação contra ataques
-gem 'rack-protection', '1.1.4'
+gem 'rack-protection'
 
 # Paginação
-gem 'kaminari', '0.13.0'
+gem 'kaminari'
 
 # banco nosql
-gem "mongoid", '2.4.0'
+gem "mongoid"
 
 # para deixar o mongodb rapido
-gem "bson_ext", '1.5.2'
+gem "bson_ext"
+
+# gem pra fazer permalink com mongoid
+gem 'mongoid_slug'
 
 # biblioteca grafica
 gem 'rmagick', :require => 'RMagick'
@@ -59,10 +77,10 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   # gem para comprimir o javascript
-	gem 'uglifier', '1.2.0'
+	gem 'uglifier'
 end
 
 # Use unicorn as the web server
@@ -79,5 +97,5 @@ group :test, :development do
   gem 'rb-fsevent'
   gem 'libnotify'
   # Pretty printed test output
-  gem 'turn', '0.8.2', :require => false
+  gem 'turn', :require => false
 end
