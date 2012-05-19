@@ -1,0 +1,15 @@
+ptBR:
+
+  label:
+    name: Nome
+    age: Idade
+
+  models:
+    campers: Acampantes
+    camper: Acampante
+    user: Usuário
+    users: Usuários
+    teams: Equipes
+    team: Equipe
+    rooms: Quartos
+    room: Quarto

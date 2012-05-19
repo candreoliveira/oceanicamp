@@ -4,8 +4,16 @@ Oceanicamp.Routers.Users = Support.SwappingRouter.extend({
 	},
 	
 	show: function( nickname ) {
-		var view = new Oceanicamp.Views.UsersShow({ model: Oceanicamp.Global.Params.user });
+		var user;
+
+		if ( Oceanicamp.Global.Params && Oceanicamp.Global.Params.user )
+			user = Oceanicamp.Global.Params.user;
+
+		user = user || Oceanicamp.Global.Models.current_user
+
+		var view = new Oceanicamp.Views.UsersShow({ model: user });
 		$('body').html(view.render().$el);
+
 		Oceanicamp.Global.Params = null;
 	}
 });

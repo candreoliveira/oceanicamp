@@ -8,6 +8,7 @@
 //= require backbone-support
 //
 //= require ./vendor/backbone-forms.js
+//= require ./vendor/backbone-forms-bootstrap-template.js
 //= require ./vendor/jquery-ui-editors.js
 //
 //= require i18n/translations

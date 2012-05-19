@@ -21,7 +21,7 @@ Oceanicamp.Views.HomeIndex = Support.CompositeView.extend({
 			var user = Oceanicamp.Global.Models.current_user = new Oceanicamp.Models.User(data.user);
 
 			Oceanicamp.Global.Params = { user: user }
-			Oceanicamp.Global.Routers.users.navigate("users/" + user.get('nickname'), {trigger: true})
+			Oceanicamp.Global.Routers.users.navigate("users/" + user.get('nickname'), {trigger: true, replace: true})
 
 		} else {
 			alert("falha");

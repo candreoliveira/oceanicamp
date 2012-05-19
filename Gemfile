@@ -17,7 +17,7 @@ gem 'backbone-on-rails'
 # gem que disponibiliza o jquery
 gem 'jquery-rails'
 
-# gem que proporciona classes ára melhorar o desempenho do backbone
+# gem que proporciona classes para melhorar o desempenho do backbone
 gem 'backbone-support'
 
 # gem que disponibiliza o i18n nojavascript
@@ -68,11 +68,21 @@ gem 'rmagick', :require => 'RMagick'
 # pub/sub na web
 gem 'faye'
 
-# servidor de desenvolvimento
-gem 'thin'
+group :production do
+  # gem para proteger o servidor de muitas requisicoes
+  gem 'rack-throttle', '0.3.0'
 
-# usado para debugar o rails
-gem 'ruby-debug19', :require => 'ruby-debug'
+  # sevidor de producao
+  gem 'unicorn', '4.1.1'
+end
+
+group :development do
+	# usado para debugar o rails
+	gem 'ruby-debug19', :require => 'ruby-debug'
+
+	# servidor de desenvolvimento
+	gem 'thin'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

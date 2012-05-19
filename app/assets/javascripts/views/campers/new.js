@@ -1,18 +1,15 @@
-Oceanicamp.Views.CampersIndex = Support.CompositeView.extend({
+Oceanicamp.Views.CampersNew = Support.CompositeView.extend({
 
-  template: JST['campers/index'],
+  template: JST['campers/new'],
 
 	events: {
+		"click #camper-form-submit": "submitForm"
 	},
 
 	initialize: function() {
-		_.bindAll(this, "render");
+		_.bindAll(this);
 
-		this.collection.bind("change", this.render);
-		this.collection.bind("add",this.render);
-		this.collection.bind("remove", this.render);
-
-		this.collection.fetch();
+		this.model = new Oceanicamp.Models.Camper();
 	},
 
 	render: function () {
@@ -37,15 +34,18 @@ Oceanicamp.Views.CampersIndex = Support.CompositeView.extend({
 		this.$("#content-container").html(this.template())
 		this.$("#side-bar a[href='/campers']").parent().addClass("active");
 
-		this.renderCampers();
+		this.form = new Backbone.Form({
+        model: this.model
+    }).render();
+
+    this.$("#content-container #camper-form").prepend(this.form.el);
 	},
 
-	renderCampers: function() {
-		this.collection.each(this.addOne);
-	},
+	submitForm: function( e ) {
+		var errors = this.form.commit();
 
-	addOne: function( camper ) {
-    var camperView = new CamperIndexView({model: camper});
-    this.renderChildInto(camperView, this.$("table tbody"));
-  },
+		if ( !errors ) {
+			this.model.save();
+		}
+	}
 });

@@ -4,9 +4,11 @@ class Camper
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
-	field :name, 		:type => String
-	field :phones, 	:type => Array, 	:default => []
-	field :church, 	:type => String
+	field :name, 			:type => String
+	field :phones, 		:type => Array, 	:default => []
+	field :church, 		:type => String
+	field :birthday,	:type => Date
+	field :email,			:type => String
 
 	belongs_to :team
 	belongs_to :room
