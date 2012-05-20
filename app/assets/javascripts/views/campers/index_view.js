@@ -8,7 +8,7 @@ Oceanicamp.Views.CamperIndexView = Support.CompositeView.extend({
 	},
 
 	render: function () {
-		this.$el.html(this.template({ model: this.model }));
+		this.$el.html(this.template({ camper: this.model }));
 		return this;
 	}
 

@@ -5,6 +5,10 @@ Oceanicamp.Views.SideBar = Support.CompositeView.extend({
 		"click a": "choice"
 	},
 
+	initialize: function() {
+		_.	bindAll(this, "render", "choice");
+	},
+
 	render: function () {
 		this.$el.html(this.template({user: Oceanicamp.Global.Models.current_user}));
 		return this;
@@ -26,6 +30,9 @@ Oceanicamp.Views.SideBar = Support.CompositeView.extend({
 			case "rooms":
 				break;
 			case "teams":
+				this.parent.leave();
+
+				Oceanicamp.Global.Routers.teams.navigate(link.attr("href"), {trigger: true});
 				break;
 			default:
 		}

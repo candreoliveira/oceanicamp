@@ -1,5 +1,7 @@
 Oceanicamp::Application.routes.draw do
   
+  resources :activities
+
   root :to => "home#index"
 
   post "login"    => "sessions#create",     :as => "login"
@@ -8,8 +10,6 @@ Oceanicamp::Application.routes.draw do
   resources :users
   
   resources :teams
-
-  resources :events
 
   resources :rooms
 

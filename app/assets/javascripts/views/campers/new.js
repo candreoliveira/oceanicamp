@@ -32,7 +32,7 @@ Oceanicamp.Views.CampersNew = Support.CompositeView.extend({
 
 	renderContent: function() {
 		this.$("#content-container").html(this.template())
-		this.$("#side-bar a[href='/campers']").parent().addClass("active");
+		this.$("#side-bar a[href='/campers/new']").parent().addClass("active");
 
 		this.form = new Backbone.Form({
         model: this.model

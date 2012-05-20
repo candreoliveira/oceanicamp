@@ -15,6 +15,7 @@ var Oceanicamp = {
 			Oceanicamp.Global.Routers.home 		= new Oceanicamp.Routers.Home();
 			Oceanicamp.Global.Routers.users 	= new Oceanicamp.Routers.Users();
 			Oceanicamp.Global.Routers.campers = new Oceanicamp.Routers.Campers();
+			Oceanicamp.Global.Routers.teams 	= new Oceanicamp.Routers.Teams();
 
 			Oceanicamp.Global.Params = params;
 

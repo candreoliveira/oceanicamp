@@ -2,7 +2,7 @@ Oceanicamp.Models.Camper = Backbone.Model.extend({
 
 	idAttribute: "_id",
 
-	url: "campers/",
+	url: "/campers",
 
 	schema: {
 		name:       { type: 'Text', validators: ['required'] },
