@@ -2,7 +2,7 @@ Oceanicamp.Models.Activity = Backbone.Model.extend({
 	
 	idAttribute: "_id",
 
-	url: "/activities",
+	urlRoot: "/activities",
 
 	schema: {
 		title:       { type: 'Text', validators: ['required'] },

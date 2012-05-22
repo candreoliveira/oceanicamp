@@ -3,6 +3,8 @@ Oceanicamp.Views.ActivitiesShow = Support.CompositeView.extend({
   template: JST['activities/show'],
 
   events: {
+  	"click button.back": "showAll",
+  	"click button.checkpoints": "initCheckpoints",
 	},
 
 	initialize: function() {
@@ -42,6 +44,18 @@ Oceanicamp.Views.ActivitiesShow = Support.CompositeView.extend({
 
 	renderActivity: function() {
 		this.model;
+	},
+
+	showAll: function() {
+		this.leave();
+
+		Oceanicamp.Global.Routers.activities.navigate("/activities", {trigger: true});
+	},
+
+	initCheckpoints: function() {
+		//this.leave();
+
+		//Oceanicamp.Global.Routers.activities.navigate("/activities", {trigger: true});
 	}
 
 });

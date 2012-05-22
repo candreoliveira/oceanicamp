@@ -1,1 +1,9 @@
 <h1>Atividade - <%= activity.escape("title") %></h1>
+
+<div class="activity">Exibir as informações</div>
+
+<button class="btn back" data-loading-text="sending...">Voltar</button>
+
+<% if ( activity.get('checkpoint') ) { %>
+	<button class="btn checkpoints" data-loading-text="sending...">Checkpoints</button>
+<% } %>
