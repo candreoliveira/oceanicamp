@@ -1,0 +1,5 @@
+<td><%= activity.escape('title') %></td>
+<td><%= activity.escape('checkpoint') %></td>
+<td><%= activity.escape('start_at') %></td>
+<td><%= activity.escape('end_at') %></td>
+<td><a href="/activities/<%= activity.get("_id") %>" class="show">Ver</a></td>

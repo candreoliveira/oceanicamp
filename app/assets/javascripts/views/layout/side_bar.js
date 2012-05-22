@@ -20,6 +20,8 @@ Oceanicamp.Views.SideBar = Support.CompositeView.extend({
 		var link 		= $(event.target),
 				router 	= link.attr("data-router");
 
+		if ( link.parent().hasClass("active") ) return;
+
 		switch ( router ) {
 			case "campers":
 				this.parent.leave();
@@ -27,7 +29,11 @@ Oceanicamp.Views.SideBar = Support.CompositeView.extend({
 				Oceanicamp.Global.Routers.campers.navigate(link.attr("href"), {trigger: true});
 
 				break;
-			case "rooms":
+			case "activities":
+				this.parent.leave();
+
+				Oceanicamp.Global.Routers.activities.navigate(link.attr("href"), {trigger: true});
+
 				break;
 			case "teams":
 				this.parent.leave();

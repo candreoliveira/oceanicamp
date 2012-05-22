@@ -47,6 +47,7 @@ Oceanicamp.Views.CampersIndex = Support.CompositeView.extend({
 
 	addOne: function( camper ) {
     var camperView = new Oceanicamp.Views.CamperIndexView({model: camper});
-    this.renderChildInto(camperView, this.$("table tbody"));
-  },
+    this.renderChild(camperView);
+    this.$("table tbody").append(camperView.el);
+  }
 });

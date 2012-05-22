@@ -1,12 +1,13 @@
-Oceanicamp.Views.TeamsIndex = Support.CompositeView.extend({
+Oceanicamp.Views.ActivitiesIndex = Support.CompositeView.extend({
 
-  template: JST['teams/index'],
+  template: JST['activities/index'],
 
-	events: {
+  events: {
+  	"click a.show": "showActivity"
 	},
 
 	initialize: function() {
-		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderTeams");
+		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderActivities", "showActivity");
 
 		this.collection.bind("change", this.render);
 		this.collection.bind("add", this.render);
@@ -36,19 +37,30 @@ Oceanicamp.Views.TeamsIndex = Support.CompositeView.extend({
 
 	renderContent: function() {
 		this.$("#content-container").html(this.template())
-		this.$("#side-bar a[href='/teams']").parent().addClass("active");
+		this.$("#side-bar a[href='/activities']").parent().addClass("active");
 
-		this.renderTeams();
+		this.renderActivities();
 	},
 
-	renderTeams: function() {
+	renderActivities: function() {
 		this.collection.each(this.addOne);
 	},
 
-	addOne: function( team ) {
-    var teamView = new Oceanicamp.Views.TeamIndexView({model: team});
-    this.renderChild(teamView);
-    this.$("table tbody").append(teamView.el);
+	addOne: function( activity ) {
+    var activityView = new Oceanicamp.Views.ActivityIndexView({model: activity});
+    this.renderChild(activityView);
+    this.$("table tbody").append(activityView.el);
+  },
+
+  showActivity: function( event ) {
+  	event.preventDefault();
+
+  	var link = $(event.target);
+
+  	this.leave();
+
+  	Oceanicamp.Global.Routers.activities.navigate(link.attr("href"), {trigger: true});
+
   }
 
 });

@@ -1,13 +1,14 @@
 class ActivitiesController < ApplicationController
+
+  respond_to :html, :json
+
+
   # GET /activities
   # GET /activities.json
   def index
     @activities = Activity.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @activities }
-    end
+    respond_with @activities
   end
 
   # GET /activities/1
@@ -15,10 +16,7 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Activity.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @activity }
-    end
+    respond_with @activity
   end
 
   # GET /activities/new
