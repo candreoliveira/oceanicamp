@@ -1,0 +1,66 @@
+Oceanicamp.Views.TeamsShow = Support.CompositeView.extend({
+
+  template: JST['teams/show'],
+
+  events: {
+  	"click button.back": "showAll",
+  	"click button.edit": "editTeam",
+  	"click button.delete": "deleteTeam"
+	},
+
+	initialize: function() {
+		_.bindAll(this);
+
+		this.model.bind("change", this.render);
+		this.model.bind("add", this.render);
+		this.model.bind("remove", this.render);
+		this.model.bind("reset", this.render);
+
+		this.model.fetch();
+	},
+
+	render: function () {
+		this.renderLayout();
+		this.renderContent();
+		return this;
+	},
+
+	renderLayout: function() {
+		this.$el.html(JST['layout/application']());
+		
+		var navBar = new Oceanicamp.Views.NavBar(),
+				navBarContainer = this.$('#nav-bar');
+		this.renderChildInto(navBar, navBarContainer);
+
+		var sideBar = new Oceanicamp.Views.SideBar(),
+				sideBarContainer = this.$('#side-bar');
+		this.renderChildInto(sideBar, sideBarContainer);
+	},
+
+	renderContent: function() {
+		this.$("#content-container").html(this.template({team: this.model}))
+
+		this.renderTeam();
+	},
+
+	renderTeam: function() {
+		this.model;
+	},
+
+	showAll: function() {
+		this.leave();
+
+		Oceanicamp.Global.Routers.teams.navigate("/teams", {trigger: true});
+	},
+
+	editTeam: function() {
+		this.leave();
+
+		Oceanicamp.Global.Routers.teams.navigate("/teams/"+ this.model.get("_id") + "/edit", {trigger: true});
+	},
+
+	deleteTeam: function() {
+		
+	}
+
+});
