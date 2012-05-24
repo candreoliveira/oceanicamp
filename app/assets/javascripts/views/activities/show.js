@@ -5,10 +5,12 @@ Oceanicamp.Views.ActivitiesShow = Support.CompositeView.extend({
   events: {
   	"click button.back": "showAll",
   	"click button.checkpoints": "initCheckpoints",
+  	"click button.edit": "editActivity",
+  	"click button.delete": "deleteActivity"
 	},
 
 	initialize: function() {
-		_.bindAll(this, "render");
+		_.bindAll(this);
 
 		this.model.bind("change", this.render);
 		this.model.bind("add", this.render);
@@ -56,6 +58,16 @@ Oceanicamp.Views.ActivitiesShow = Support.CompositeView.extend({
 		//this.leave();
 
 		//Oceanicamp.Global.Routers.activities.navigate("/activities", {trigger: true});
+	},
+
+	editActivity: function() {
+		this.leave();
+
+		Oceanicamp.Global.Routers.activities.navigate("/activities/"+ this.model.get("_id") + "/edit", {trigger: true});
+	},
+
+	deleteActivity: function() {
+		
 	}
 
 });

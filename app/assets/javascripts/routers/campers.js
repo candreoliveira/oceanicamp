@@ -1,12 +1,19 @@
 Oceanicamp.Routers.Campers = Backbone.Router.extend({
 	routes: {
-		"campers": 			"index",
-		"campers/new": 	"create",
-		"campers/:id": 	"show"
+		"campers": 					"index",
+		"campers/new": 			"create",
+		"campers/:id": 			"show",
+		"campers/:id/edit": "edit"
 	},
 	
+	edit: function( id ) {
+		var view = new Oceanicamp.Views.CampersEdit({ model: new Oceanicamp.Models.Camper({"_id": id}) });
+		$('body').html(view.render().$el);
+		Oceanicamp.Global.Params = null;
+	},
+
 	show: function( id ) {
-		var view = new Oceanicamp.Views.CampersShow({ model: Oceanicamp.Global.Params.camper });
+		var view = new Oceanicamp.Views.CampersShow({ model: new Oceanicamp.Models.Camper({"_id": id}) });
 		$('body').html(view.render().$el);
 		Oceanicamp.Global.Params = null;
 	},

@@ -3,10 +3,11 @@ Oceanicamp.Views.TeamsIndex = Support.CompositeView.extend({
   template: JST['teams/index'],
 
 	events: {
+  	"click a.show": "showTeam"
 	},
 
 	initialize: function() {
-		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderTeams");
+		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderTeams", "showTeam");
 
 		this.collection.bind("change", this.render);
 		this.collection.bind("add", this.render);
@@ -49,6 +50,17 @@ Oceanicamp.Views.TeamsIndex = Support.CompositeView.extend({
     var teamView = new Oceanicamp.Views.TeamIndexView({model: team});
     this.renderChild(teamView);
     this.$("table tbody").append(teamView.el);
+  },
+
+  showTeam: function( event ) {
+  	event.preventDefault();
+
+  	var link = $(event.target);
+
+  	this.leave();
+
+  	Oceanicamp.Global.Routers.teams.navigate(link.attr("href"), {trigger: true});
+
   }
 
 });

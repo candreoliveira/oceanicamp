@@ -1,4 +1,4 @@
 <td><%= camper.escape('name') %></td>
 <td><%= camper.escape('age') %></td>
 <td><%= camper.get('team') ? camper.get('team').escape('name') : "Sem Time" %></td>
-<td><%= camper.get('room') ? camper.get('room').escape('name') : "Sem Quarto" %></td>
+<td><a href="/campers/<%= camper.get("_id") %>" class="show">Ver</a></td>

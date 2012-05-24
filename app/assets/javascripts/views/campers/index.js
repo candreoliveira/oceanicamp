@@ -3,10 +3,11 @@ Oceanicamp.Views.CampersIndex = Support.CompositeView.extend({
   template: JST['campers/index'],
 
 	events: {
+		"click a.show": "showCamper"
 	},
 
 	initialize: function() {
-		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderCampers");
+		_.bindAll(this, "render", "addOne", "renderLayout", "renderContent", "renderCampers", "showCamper");
 
 		this.collection.bind("change", this.render);
 		this.collection.bind("add", this.render);
@@ -49,5 +50,16 @@ Oceanicamp.Views.CampersIndex = Support.CompositeView.extend({
     var camperView = new Oceanicamp.Views.CamperIndexView({model: camper});
     this.renderChild(camperView);
     this.$("table tbody").append(camperView.el);
+  },
+
+  showCamper: function( event ) {
+  	event.preventDefault();
+
+  	var link = $(event.target);
+
+  	this.leave();
+
+  	Oceanicamp.Global.Routers.campers.navigate(link.attr("href"), {trigger: true});
+
   }
 });

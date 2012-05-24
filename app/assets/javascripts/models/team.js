@@ -1,8 +1,8 @@
 Oceanicamp.Models.Team = Backbone.Model.extend({
 
-	_idAttribute: "_id",
+	idAttribute: "_id",
 
-	url: "/teams",
+	urlRoot: "/teams",
 
 	schema: {
 		name:       { type: 'Text', validators: ['required'] },

@@ -1,12 +1,19 @@
 Oceanicamp.Routers.Teams = Backbone.Router.extend({
 	routes: {
-		"teams": 			"index",
-		"teams/new": 	"create",
-		"teams/:id": 	"show"
+		"teams": 					"index",
+		"teams/new": 			"create",
+		"teams/:id": 			"show",
+		"teams/:id/edit": "edit"
 	},
 	
+	edit: function( id ) {
+		var view = new Oceanicamp.Views.TeamsEdit({ model: new Oceanicamp.Models.Team({"_id": id}) });
+		$('body').html(view.render().$el);
+		Oceanicamp.Global.Params = null;
+	},
+
 	show: function( id ) {
-		var view = new Oceanicamp.Views.TeamsShow({ model: Oceanicamp.Global.Params.team });
+		var view = new Oceanicamp.Views.TeamsShow({ model: new Oceanicamp.Models.Team({"_id": id}) });
 		$('body').html(view.render().$el);
 		Oceanicamp.Global.Params = null;
 	},
