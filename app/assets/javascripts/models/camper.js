@@ -7,25 +7,32 @@ Oceanicamp.Models.Camper = Backbone.Model.extend({
 	schema: {
 		name:       { type: 'Text', validators: ['required'] },
     email:      { dataType: 'email', validators: ['required', 'email'] },
+    team_id:   	{ type: 'Select', options: function(callback) {
+        var teams = new Oceanicamp.Collections.Teams();
+        teams.fetch({async: false});
+    		callback(teams);
+      }
+    },
     birthday:   { type: 'Date', validators: ['required'] },
 		church:       'Text',
-    phones:     { type: 'List', help: 'Camper Phones' }
+    phones:     { type: 'List', help: 'Telefones' },
+    code: 			'Text'
 	},
 
 	team: function() {
 		if ( this.has("team_id") ) {
 			Oceanicamp.Global.Collections.Teams = Oceanicamp.Global.Collections.Teams || new Oceanicamp.Collections.Teams()
 
-			var team = _.filter( Oceanicamp.Global.Collections.Teams, function(t) {
+			var team = _.find( Oceanicamp.Global.Collections.Teams.models, function(t) {
 				return t.get("_id") == this.get("team_id")
 			}, this);
 
 			if ( team ) {
 				return team;
 			} else {
-				Oceanicamp.Global.Collections.Teams.fetch()
+				Oceanicamp.Global.Collections.Teams.fetch({async: false})
 
-				team = _.filter( Oceanicamp.Global.Collections.Teams, function(t) {
+				team = _.find( Oceanicamp.Global.Collections.Teams.models, function(t) {
 					return t.get("_id") == this.get("team_id")
 				}, this);
 
@@ -36,10 +43,6 @@ Oceanicamp.Models.Camper = Backbone.Model.extend({
 		} else {
 			return undefined
 		}
-	},
-
-	room: function() {
-		return undefined
 	},
 
 	validate: function( attrs ) {

@@ -2,6 +2,10 @@
 //= require jquery_ujs
 //= require jquery-ui
 //
+//= require ./vendor/highcharts.js
+//= require ./vendor/exporting.js
+//= require ./vendor/gray.js
+//
 //= require underscore
 //= require ./vendor/json2.js
 //= require backbone

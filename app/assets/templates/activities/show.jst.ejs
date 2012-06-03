@@ -1,10 +1,29 @@
 <h1>Atividade - <%= activity.escape("title") %></h1>
 
-<div class="activity">Exibir as informações</div>
+<div class="activity">
+	<div class="field">Tem Checkpoint?: <%= activity.get('checkpoint') ? "Sim" : "Não"%></div>
+	<div class="field">Tem Pontuação?: <%= activity.get('with_ranking') ? "Sim" : "Não"%></div>
+	<div class="field">Começa em: <%= activity.escape('start_at') %></div>
+	<div class="field">Termina em: <%= activity.escape('end_at') %></div>
+</div>
 
 <button class="btn back" data-loading-text="sending...">Voltar</button>
 <button class="btn edit" data-loading-text="sending...">Editar</button>
 <% if ( activity.get('checkpoint') ) { %>
 	<button class="btn checkpoints" data-loading-text="sending...">Checkpoints</button>
 <% } %>
+<% if ( activity.get('with_ranking') ) { %>
+	<button class="btn winners" data-loading-text="sending...">Vencedores</button>
+<% } %>
 <button class="btn delete" data-loading-text="sending...">Deletar</button>
+
+<div class="statistics">
+	<% if ( activity.get('with_ranking') ) { %>
+		<div id="chart1"></div>
+	<% } %>
+	<% if ( activity.get('checkpoint') ) { %>
+		<div id="chart2"></div>
+		<div id="chart3"></div>
+		<div id="chart4"></div>
+	<% } %>
+</div>

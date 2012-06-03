@@ -1,0 +1,14 @@
+<h1>Atividade - <%= activity.escape("title") %> - Definir Vencedores</h1>
+
+<form accept-charset="UTF-8" action="/activities/<%= activity.get("_id") %>/set_winners" id="form_winners" method="post" data-remote="true">
+	<label>Preencha com as posições de cada equipe</label>
+	<% _.each(teams.models, function(team) { %>
+	  <p>
+	  	<%= team.escape('name') %>: <input name="winners[<%= team.get('_id') %>]" placeholder="Posição" size="30" type="text">
+	  </p>
+	<% }); %>
+  <button type="submit" class="btn">Enviar</button>
+</form>
+
+<button class="btn back" data-loading-text="sending...">Voltar</button>
+

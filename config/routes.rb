@@ -1,12 +1,22 @@
 Oceanicamp::Application.routes.draw do
   
-  resources :activities
 
   root :to => "home#index"
 
   post "login"    => "sessions#create",     :as => "login"
   get "logout"    => "sessions#destroy",    :as => "logout"
   
+  resources :activities do
+    get "checkpoints", :on => :member
+    get "winners", :on => :member
+    post "create_checkpoint", :on => :member
+    post "set_winners", :on => :member
+  end
+
+  resources :charts do 
+    get "activity_by_team", :on => :collection
+  end
+
   resources :users
   
   resources :teams

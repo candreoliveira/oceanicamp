@@ -55,7 +55,6 @@ class ActivitiesController < ApplicationController
   # PUT /activities/1.json
   def update
     @activity = Activity.find(params[:id])
-
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
         format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
@@ -76,6 +75,61 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to activities_url }
       format.json { head :no_content }
+    end
+  end
+
+  def checkpoints
+    @activity = Activity.find(params[:id])
+  end
+
+  def create_checkpoint
+    @activity = Activity.find(params[:id])
+    @camper   = Camper.where(code: params[:code]).first
+    
+    if @camper
+
+      if Checkpoint.where(activity_id: @activity.id, camper_id: @camper.id).count > 0
+        render :json => {:success => false, :already_exists => true}
+      else
+        @checkpoint = Checkpoint.new(activity_id: @activity.id, camper_id: @camper.id)
+
+        if @checkpoint.save
+          render :json => {:success => true}
+        else
+          render :json => {:success => false}
+        end
+      end
+
+    else
+      render :json => {:success => false}
+    end
+  end
+
+  def winners
+    @activity = Activity.find(params[:id])
+  end
+
+  def set_winners
+    @activity = Activity.find(params[:id])
+
+    if params[:winners]
+
+      ranking = {}
+
+      params[:winners].each do |team_id, position|
+        ranking[position] = team_id
+      end
+      
+      @activity.ranking = ranking
+
+      if @activity.save
+        render :json => {:success => true}
+      else
+        render :json => {:success => false}
+      end
+
+    else
+      render :json => {:success => false}
     end
   end
 end

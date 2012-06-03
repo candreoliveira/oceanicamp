@@ -9,8 +9,12 @@ class Camper
 	field :church, 		:type => String
 	field :birthday,	:type => Date
 	field :email,			:type => String
+	field :code,			:type => String
 
 	belongs_to :team
-	belongs_to :room
+	has_many :checkpoints
 
+	def as_json(options = {})
+    super(options.merge(:only => [ :_id, :name, :phones, :church, :birthday, :email, :code, :team_id ]))
+  end
 end

@@ -1,0 +1,11 @@
+<h1>Atividade - <%= activity.escape("title") %></h1>
+
+<div class="activity">
+	<label>Preencha o código de barras:</label>
+	<input type="text" id="barcode" placeholder="Código de Barras" size="30">
+	<button class="btn send-barcode" data-loading-text="sending...">Enviar</button>
+</div>
+
+<button class="btn back" data-loading-text="sending...">Voltar</button>
+<button class="btn process" data-loading-text="sending...">Fechar</button>
+

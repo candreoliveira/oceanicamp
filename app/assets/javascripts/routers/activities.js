@@ -3,7 +3,9 @@ Oceanicamp.Routers.Activities = Backbone.Router.extend({
 		"activities": 					"index",
 		"activities/new": 			"create",
 		"activities/:id": 			"show",
-		"activities/:id/edit": 	"edit"
+		"activities/:id/edit": 	"edit",
+		"activities/:id/checkpoints":	"checkpoints",
+		"activities/:id/winners":	"winners"
 	},
 	
 	edit: function( id ) {
@@ -29,6 +31,18 @@ Oceanicamp.Routers.Activities = Backbone.Router.extend({
 
 	create: function() {
 		var view = new Oceanicamp.Views.ActivitiesNew();
+		$('body').html(view.render().$el);
+		Oceanicamp.Global.Params = null;
+	},
+
+	checkpoints: function( id ) {
+		var view = new Oceanicamp.Views.ActivitiesCheckpoints({ model: new Oceanicamp.Models.Activity({"_id": id}) });
+		$('body').html(view.render().$el);
+		Oceanicamp.Global.Params = null;
+	},
+
+	winners: function( id ) {
+		var view = new Oceanicamp.Views.ActivitiesWinners({ model: new Oceanicamp.Models.Activity({"_id": id}) });
 		$('body').html(view.render().$el);
 		Oceanicamp.Global.Params = null;
 	}
